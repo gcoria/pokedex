@@ -14,10 +14,10 @@ type cachEntry struct {
 }
 
 func NewCache(interval time.Duration) Cache {
-	c := Cache {
+	c := Cache{
 		cache: make(map[string]cachEntry),
 	}
-	c.reapLoop(interval)
+	go c.reapLoop(interval)
 	return c
 }
 

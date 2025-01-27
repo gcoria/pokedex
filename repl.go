@@ -57,7 +57,7 @@ func getCommands() map[string]cliCommand {
 			callback:    callbackMap,
 		},
 		"map_back": {
-			name:        "map",
+			name:        "map_back",
 			description: "get previous location",
 			callback:    callbackMapPrevious,
 		},

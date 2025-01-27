@@ -1,9 +1,12 @@
 package pokecache
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
 func TestCreateCache(t *testing.T) {
-	cache := NewCache()
+	cache := NewCache(time.Second * 1)
 
 	if cache.cache == nil {
 		t.Error("cache is nil")
@@ -11,23 +14,23 @@ func TestCreateCache(t *testing.T) {
 }
 
 func TestAddGetCache(t *testing.T) {
-	cache := NewCache()
+	cache := NewCache(time.Second * 1)
 
 	cases := []struct {
 		inputKey string
 		inputVal []byte
-	} { 
+	}{
 		{
-		inputKey: "key1",
-		inputVal: []byte("val1"),
+			inputKey: "key1",
+			inputVal: []byte("val1"),
 		},
 		{
-		inputKey: "key2",
-		inputVal: []byte("val2"),
+			inputKey: "key2",
+			inputVal: []byte("val2"),
 		},
 		{
-		inputKey: "",
-		inputVal: []byte("val3"),
+			inputKey: "",
+			inputVal: []byte("val3"),
 		},
 	}
 
@@ -43,5 +46,30 @@ func TestAddGetCache(t *testing.T) {
 			t.Errorf("%s not found %s", string(actual), cas.inputVal)
 			continue
 		}
+	}
+}
+
+func TestReap(t *testing.T) {
+	interval := time.Millisecond * 10
+
+	cache := NewCache(interval)
+
+	cache.Add("key1", []byte("val1"))
+	time.Sleep(interval + time.Millisecond*5)
+	_, ok := cache.Get("key1")
+	if ok {
+		t.Errorf("key1 should have been reaped")
+	}
+}
+
+func TestReapFails(t *testing.T) {
+	interval := time.Millisecond * 10
+	cache := NewCache(interval)
+
+	cache.Add("key2", []byte("val2"))
+	time.Sleep(time.Millisecond)
+	_, ok := cache.Get("key2")
+	if !ok {
+		t.Errorf("key2 should have been found")
 	}
 }
