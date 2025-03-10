@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func callbackHelp(cfg *config) error {
+func callbackHelp(cfg *config, args ...string) error {
 	fmt.Println("")
 	fmt.Println("-----------------")
 	fmt.Println("Avalaible Options")
@@ -17,7 +17,7 @@ func callbackHelp(cfg *config) error {
 	return nil
 }
 
-func callbackExit(cfg *config) error {
+func callbackExit(cfg *config, args ...string) error {
 	fmt.Println("Bye bye")
 	os.Exit(0)
 	return nil
