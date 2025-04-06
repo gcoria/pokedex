@@ -2,8 +2,6 @@
 
 A feature-rich command-line interface (CLI) application written in Go that simulates a Pokédex from the Pokémon universe. This application interacts with the [PokéAPI](https://pokeapi.co/) to provide various Pokémon-related functionalities.
 
-![Pokédex Demo](https://via.placeholder.com/800x400?text=Pok%C3%A9dex+CLI+Demo)
-
 ## Features
 
 - **Explore Location Areas**: Navigate through the Pokémon world by exploring different location areas
