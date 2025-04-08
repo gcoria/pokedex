@@ -1,9 +1,11 @@
 package main
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 func callbackCatch(cfg *config, args ...string) error {
@@ -14,7 +16,10 @@ func callbackCatch(cfg *config, args ...string) error {
 
 	pokemonName := args[0]
 
-	pokemon, err := cfg.pokeapiClient.GetPokemon(pokemonName)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel() // Ensure resources are cleaned up
+
+	pokemon, err := cfg.pokeapiClient.GetPokemon(ctx, pokemonName)
 	if err != nil {
 		return err
 	}

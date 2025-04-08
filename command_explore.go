@@ -1,8 +1,10 @@
 package main
 
 import (
+	"context"
 	"errors"
 	"fmt"
+	"time"
 )
 
 func callbackExplore(cfg *config, args ...string) error {
@@ -13,7 +15,11 @@ func callbackExplore(cfg *config, args ...string) error {
 
 	locationAreaName := args[0]
 
-	locationArea, err := cfg.pokeapiClient.GetLocationArea(locationAreaName)
+	// Create context with 15 second timeout
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel() // Ensure resources are cleaned up
+
+	locationArea, err := cfg.pokeapiClient.GetLocationArea(ctx, locationAreaName)
 	if err != nil {
 		return err
 	}
