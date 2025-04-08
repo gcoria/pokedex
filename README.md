@@ -126,6 +126,7 @@ This project was developed with the following objectives:
 - Build a CLI tool that makes interacting with a back-end server easier
 - Get hands-on practice with local Go development and tooling
 - Learn about caching and how to use it to improve performance
+- Learn context package
 
 ## Future Enhancements
 
