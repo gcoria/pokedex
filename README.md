@@ -21,6 +21,7 @@ A feature-rich command-line interface (CLI) application written in Go that simul
 - **PokéAPI**: External API for Pokémon data
 - **Custom Cache Implementation**: Time-based cache with automatic expiration
 - **Concurrent Programming**: Uses goroutines and mutexes for thread-safe caching
+- **Context Package**: Manages API request cancellation and timeouts
 - **Unit Testing**: Test coverage for critical components
 
 ## Installation
@@ -106,6 +107,7 @@ The application follows a modular design with clear separation of concerns:
 - **Command Handlers**: Individual command implementations
 - **PokéAPI Client**: Handles communication with the external API
 - **Cache Package**: Implements efficient caching with automatic expiration
+- **Context Management**: Uses Go's context package for API request timeouts and cancellation
 
 ### Cache Implementation
 
@@ -127,6 +129,7 @@ This project was developed with the following objectives:
 
 ## Future Enhancements
 
+- Refactor code structure
 - Add persistent storage to save caught Pokémon between sessions
 - Implement battles between caught Pokémon
 - Add more interactive commands and features
